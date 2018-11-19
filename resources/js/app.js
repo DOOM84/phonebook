@@ -9,6 +9,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -17,7 +22,22 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
+let Myheader = require('./components/Myheader.vue');
+let Myfooter = require('./components/Myfooter.vue');
+let Home = require('./components/Home.vue');
+let About = require('./components/About.vue');
+
+
+const routes = [
+    { path: '/home', component: Home },
+    { path: '/about', component: About }
+];
+
+const router = new VueRouter({
+    mode: 'history',
+    routes // сокращённая запись для `routes: routes`
+});
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -32,5 +52,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
+    components:{Myheader, Myfooter}
 });
