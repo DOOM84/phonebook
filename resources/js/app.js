@@ -29,13 +29,15 @@ let Home = require('./components/Home.vue');
 let About = require('./components/About.vue');
 
 
+
+
 const routes = [
     { path: '/home', component: Home },
     { path: '/about', component: About }
 ];
 
 const router = new VueRouter({
-    mode: 'history',
+   // mode: 'history',
     routes // сокращённая запись для `routes: routes`
 });
 
