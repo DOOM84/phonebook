@@ -55,23 +55,23 @@
                 lists: {},
                 errors: {},
                 loading: false,
-                searchQuery:'',
-                temp:''
+                searchQuery: '',
+                temp: ''
             }
         },
 
-        watch:{
-            searchQuery(){
-                if (this.searchQuery.length > 0){
+        watch: {
+            searchQuery() {
+                if (this.searchQuery.length > 0) {
 
                     this.temp = this.lists.filter((item) => {
-                        return Object.keys(item).some((key)=>{
-                           let string = String(item[key]);
+                        return Object.keys(item).some((key) => {
+                            let string = String(item[key]);
                             return string.toLowerCase().indexOf(this.searchQuery.toLowerCase()) > -1;
                         })
 
                     });
-                }else{
+                } else {
                     this.temp = this.lists;
                 }
             }
@@ -105,22 +105,13 @@
                     this.loading = !this.loading;
                     axios.delete(`/phonebook/${id}`)
                         .then((response) => {
-
-                            if(this.searchQuery.length > 0){
-                                /*this.lists.splice(this.lists.indexOf(key), 1);
-
-
-                                    this.temp = this.lists;*/
-                               // this.temp.splice(key, 1);
-                               // this.lists.splice(key, 1);
-                                this.lists.splice(this.lists.indexOf(key), 1);
-                                this.temp = this.lists;
-
-                                //this.searchQuery = '';
-                            }else{
+                            if (this.searchQuery.length > 0) {
+                                let ind = this.lists.findIndex(x => x.id === id);
+                                this.lists.splice(ind, 1);
+                                this.searchQuery = '';
+                            } else {
                                 this.temp.splice(key, 1);
                             }
-                            //this.lists.splice(key, 1);
                             this.loading = !this.loading;
                         })
                         .catch((error) => this.errors = error.response.data.errors)
