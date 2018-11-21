@@ -15,10 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/{name}', function () {
+    return view('phonebook');})->where(['name' => '[A-Za-z]+']);
 
+/*
 Route::get('/phonebook/{name}', function () {
     return redirect('/');
-})->where('name', '[A-Za-z]+');
+})->where('name', '[A-Za-z]+');*/
 
 Route::resource('phonebook', 'PhonebookController');
 

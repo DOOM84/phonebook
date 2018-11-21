@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="http://cv.efootball.space">
+            <a class="navbar-item" target="_blank" href="http://cv.efootball.space">
                <!-- <img src="" alt="DOOM" width="112" height="28">-->
                 <span>DOOM</span>
             </a>
